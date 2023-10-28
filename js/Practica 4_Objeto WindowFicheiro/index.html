@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 4_Objeto WindowFicheiro</title>
+</head>
+<style>
+    .title {
+        text-align: center;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .main {
+        display: flex;
+        justify-content: center;
+        font-size: 0.85rem;
+        font-weight: bold;
+    }
+
+    .main_content {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem;
+        background-color: #9aacab;
+        color: #fff;
+    }
+
+    .label_input {
+        text-transform: uppercase;
+    }
+
+    .message {
+        display: none;
+    }
+
+    .ventana,
+    .coordenada {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 0.25rem;
+        /* justify-content: space-between; */
+    }
+
+    .boton {
+        text-transform: capitalize;
+    }
+
+    .botones{
+        padding: 0.5rem;
+        border: 1px solid #fff;
+    }
+
+    input {
+        all: initial;
+        justify-self: end;
+        width: 4rem;
+        border-radius: 0.25rem;
+        background-color: #fff;
+    }
+
+    input:valid {
+        background-color: palegreen;
+    }
+
+    input:invalid {
+        background-color: lightpink;
+    }
+</style>
+
+<body>
+
+    <h1 class="title">Introduce el ancho y alto de la ventana</h1>
+    <main class="main">
+        <article class="main_content">
+            <div class="ventana">
+                <label for="ancho" class="label_input">ancho ventana:</label>
+                <input type="text" pattern="[0-9]+" title="Texto no válido" id="ancho" value="" required>
+                <label for="alto" class="label_input">alto ventana:</label>
+                <input type="text" pattern="[0-9]+" title="Texto no válido" id="alto" value="" required>
+
+            </div>
+
+            <div class="coordenada">
+                <label for="coordenada_x" class="label_input">coordenada x:</label>
+                <input type="text" pattern="[0-9]+" title="Texto no válido" id="coordenada_x" value="" required>
+                <label for="coordenada_y" class="label_input">coordenada y:</label>
+                <input type="text" pattern="[0-9]+" title="Texto no válido" id="coordenada_y" value="" required>
+
+            </div>
+            <div class="botones">
+                <button class="boton crear">crear</button>
+                <button class="boton-secundario cerrar" disabled>cerrar</button>
+                <button class="boton-secundario mover" disabled>mover</button>
+                <button class="boton-secundario redimensionar" disabled>redimensionar</button>
+            </div>
+            <p class="message"></p>
+        </article>
+    </main>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
