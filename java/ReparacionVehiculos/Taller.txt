@@ -1,0 +1,15 @@
+Crear una aplicación que pueda gestionar vehículos para su reparación.
+El taller gestionará coches, motocicletas y bicicletas eléctricas.
+
+Los vehículos pueden tener en base a su tipo: marca, puertas, ruedas, motor (gasolina, diesel, eléctrico), estado del motor (de 0 a 10) y matricula (Ojo en donde se ponen estos atributos ;) )
+
+El taller requiere de 2 acciones: reparar y cobrar. Reparar será distinta para cada tipo de vehículo. El taller solo se dedica a reparar motores. En cambio, el cobro será idéntico en todos los vehículos en base al número de horas de la mano de obra.
+
+Float Reparar (devuelve el número de horas de mano de obra): Si es gasolina el número de horas se multiplica por 2, si es diesel por 3 y si es eléctrico no se modifica o se multiplica por 1.
+
+	Coche:  	((10 - estado del motor)/2) * motor
+	Moto:  	((10 - estado del motor)/2.5) * motor
+	Bicicleta: 	((10 - estado del motor)/3) * motor
+
+Float Cobro:
+	Todos los vehículos:	numHorasReparación * 23.5 €
