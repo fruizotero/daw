@@ -14,6 +14,8 @@ function lista_informacion_ficheros(string $clave_array, string $ruta): void
     $array_ficheros = $_FILES[$clave_array];
     //Se obtienen las claves del array asociativo
     $keys = array_keys($array_ficheros);
+
+
     //Como todas las claves tienen un array  asociado con la misma cantidad de elementos que coincide con el número de archivos enviados, cualquiera sirve para obtener el número de archivos que se ha enviado
     $cantidad_archivos = sizeof($array_ficheros[$keys[0]]);
     $array_ficheros_validos = [];
@@ -68,13 +70,17 @@ function lista_informacion_ficheros(string $clave_array, string $ruta): void
     }
 
 
-    echo "<pre>";
-    print_r($array_ficheros_validos);
-    echo "</pre>";
+    for ($k = 0; $k < sizeof($array_ficheros_validos); $k++) {
 
-    // Al menos que haya algún cambio se está bajo el supuesto que siempre la primera clave hace referencia al "name", de ahi que se utilice [$keys[0]] para obtener el nombre.
-    for ($i = 0; $i < $cantidad_archivos; $i++) {
-        $name = str_replace("name: ", "", $array_ficheros[$keys[0]][$i]);
-        echo "<p>Se ha guardado con éxito el fichero: $name</p>";
+        if ($array_ficheros_validos[$k]["exito"]) {
+            $name = $array_ficheros_validos[$k]["name"];
+            echo "<p>Se ha guardado con éxito el fichero: $name</p>";
+        } else {
+            $name = $array_ficheros_validos[$k]["error"]["name"];
+            $error = $array_ficheros_validos[$k]["error"]["error"];
+            $size = $array_ficheros_validos[$k]["error"]["size"];
+
+            echo "<p>No se ha podido guardar el fichero:<br>Nombre: $name<br>Código error: $error<br>Tamaño: $size</p>";
+        }
     }
 }
