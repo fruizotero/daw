@@ -1,0 +1,32 @@
+
+Alumnos:
+
+Tenemos un array bidimensional que representa un conjunto de alumnos. Cada fila del array representa a un alumno, y cada columna de esa fila contiene las notas del alumno en diferentes asignaturas.
+
+Calcular la nota media de cada alumno: 
+Escribe una función que reciba el array bidimensional de notas y devuelva un array de enteros que represente la nota media de cada alumno.
+
+Calcular la nota media de cada asignatura: 
+Implementa una función que tome el array bidimensional de notas y retorne un array de enteros que represente la nota media de cada asignatura. 
+
+Calcular el porcentaje de alumnos aprobados en cada asignatura: 
+Desarrolla una función que reciba el array bidimensional de notas y devuelva un array de enteros que represente el porcentaje de alumnos aprobados en cada asignatura. Para calcular el porcentaje de alumnos aprobados en una asignatura, considera que un alumno se considera aprobado si su nota es igual o mayor a 5. 
+
+Reordenar el array bidimensional según la media total de cada alumno: Crea una función que tome el array bidimensional de notas y lo reordene de menor a mayor según la nota media total de cada alumno. El resultado debe ser un nuevo array bidimensional donde los alumnos estén ordenados por su nota media total de menor a mayor.
+
+Identificar a los alumnos con mejor rendimiento en una asignatura específica. Retorna un array con los indices de cada alumno (opcional)
+
+
+Crucigrama:
+
+Tenemos un array bidimensional que está compuesto de Strings, pero hay Strings que representan números que hacen referencia a letras del abecedario siendo "0" => "a" y "26"=> "z". Reemplaza dichos números con su valor correspondiente y devuelve el array bidimensional con sus nuevos valores.
+
+Tenemos una cadena y queremos encontrar la cantidad de veces que se repite una secuencia de caracteres. La secuencia de caracteres puede estar dentro de una palabra por ejemplo la secuencia de caracteres "entendido" podría ser parte de "malentendido". Devuelve un entero. No habrán secuencias que se repiten varias veces en una misma palabra,como la secuencia "ana" que se repite dos veces en "banana".
+
+
+Dado un array bidimensional que conforma un crucigrama, ccomprueba si existen las palabras dadas. El crucigrama podría tener números, así que utiliza la función de reemplazar los números con letras. Devuelve un array de booleanos indicando según el orden de palabras si se han encontrado o no.
+
+parserInt() => Convierte una cadena a entero.
+equalsIgnoreCase() => Se utiliza para comparar Strings.
+contains() => comprueba si una cadena contiene una secuencia e caracteres.
+split() => divide una cadena por un caracter especificado y devuelve un array de strings.
