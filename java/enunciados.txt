@@ -5,16 +5,25 @@ Tenemos un array bidimensional que representa un conjunto de alumnos. Cada fila 
 
 Calcular la nota media de cada alumno: 
 Escribe una función que reciba el array bidimensional de notas y devuelva un array de enteros que represente la nota media de cada alumno.
+mediaAlumnos(int[][] array): int[] 
 
 Calcular la nota media de cada asignatura: 
 Implementa una función que tome el array bidimensional de notas y retorne un array de enteros que represente la nota media de cada asignatura. 
 
+mediasAsignaturas(int[][] array): int[] 
+
 Calcular el porcentaje de alumnos aprobados en cada asignatura: 
-Desarrolla una función que reciba el array bidimensional de notas y devuelva un array de enteros que represente el porcentaje de alumnos aprobados en cada asignatura. Para calcular el porcentaje de alumnos aprobados en una asignatura, considera que un alumno se considera aprobado si su nota es igual o mayor a 5. 
+Desarrolla una función que reciba el array bidimensional de notas y devuelva un array de enteros que represente el porcentaje de alumnos aprobados en cada asignatura. Para calcular el porcentaje de alumnos aprobados en una asignatura, considera que un alumno se considera aprobado si su nota es igual o mayor a 5.
+
+porcentajeAprobados(int[][] array): int[] 
 
 Reordenar el array bidimensional según la media total de cada alumno: Crea una función que tome el array bidimensional de notas y lo reordene de menor a mayor según la nota media total de cada alumno. El resultado debe ser un nuevo array bidimensional donde los alumnos estén ordenados por su nota media total de menor a mayor.
 
+ordenSegunMedia(int[][] array): int[][]
+
 Identificar a los alumnos con mejor rendimiento en una asignatura específica. Retorna un array con los indices de cada alumno (opcional)
+
+mejoresAlumnosPorAsignatura(int[][]):int[][]
 
 
 Crucigrama:
