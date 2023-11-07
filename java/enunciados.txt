@@ -1,41 +1,45 @@
+[Crucigrama]
 
-Alumnos:
+Imaginemos un tablero de crucigrama representado como una matriz bidimensional de Strings. En esta matriz, algunos de los Strings no son letras, sino números que codifican letras del abecedario. Por ejemplo, "0" representa la letra "a" y "26" representa la letra "z". Al descifrar estos números, forman una frase que se vuelve legible al reemplazar todas las letras "y" con espacios en blanco.
+
+Ahora, presentamos las siguientes funcionalidades:
+
+1. Una función denominada "obtenerFrase" que toma el tablero de crucigrama en forma de una matriz bidimensional de Strings y devuelve la frase descifrada como un String.
+
+ obtenerFrase(String[][] array): String
+
+2. Otra función llamada "encontrarSecuencia" que permite verificar si una cadena dada se encuentra dentro de una frase o en otra cadena.
+
+ encontrarSecuencia(String cadena, String secuencia): boolean
+
+3. "comprobarPalabras" que tomará el tablero de crucigrama, utilizará la función "obtenerFrase" para obtener la frase descifrada y luego verificará la presencia de cada una de las palabras que conforman la frase en el crucigrama. Por ejemplo, si la frase es "Soy inevitable", se comprobarán las palabras "Soy" e "inevitable".
+Esta función devolverá un array de booleanos que indican si cada palabra de la frase se encuentra en el crucigrama, en el mismo orden en el que aparecen en la frase.
+
+comprobarPalabras(String[][] array): boolean[]
+
+
+[Alumnos]
 
 Tenemos un array bidimensional que representa un conjunto de alumnos. Cada fila del array representa a un alumno, y cada columna de esa fila contiene las notas del alumno en diferentes asignaturas.
 
-Calcular la nota media de cada alumno: 
+1. Calcular la nota media de cada alumno: 
 Escribe una función que reciba el array bidimensional de notas y devuelva un array de enteros que represente la nota media de cada alumno.
 mediaAlumnos(int[][] array): int[] 
 
-Calcular la nota media de cada asignatura: 
+2. Calcular la nota media de cada asignatura: 
 Implementa una función que tome el array bidimensional de notas y retorne un array de enteros que represente la nota media de cada asignatura. 
 
 mediasAsignaturas(int[][] array): int[] 
 
-Calcular el porcentaje de alumnos aprobados en cada asignatura: 
+3. Calcular el porcentaje de alumnos aprobados en cada asignatura: 
 Desarrolla una función que reciba el array bidimensional de notas y devuelva un array de enteros que represente el porcentaje de alumnos aprobados en cada asignatura. Para calcular el porcentaje de alumnos aprobados en una asignatura, considera que un alumno se considera aprobado si su nota es igual o mayor a 5.
 
 porcentajeAprobados(int[][] array): int[] 
 
-Reordenar el array bidimensional según la media total de cada alumno: Crea una función que tome el array bidimensional de notas y lo reordene de menor a mayor según la nota media total de cada alumno. El resultado debe ser un nuevo array bidimensional donde los alumnos estén ordenados por su nota media total de menor a mayor.
+4. Reordenar el array bidimensional según la media total de cada alumno: Crea una función que tome el array bidimensional de notas y lo reordene de menor a mayor según la nota media total de cada alumno. El resultado debe ser un nuevo array bidimensional donde los alumnos estén ordenados por su nota media total de menor a mayor.
 
 ordenSegunMedia(int[][] array): int[][]
 
-Identificar a los alumnos con mejor rendimiento en una asignatura específica. Retorna un array con los indices de cada alumno (opcional)
+5. Identificar a los alumnos con mejor rendimiento en una asignatura específica. Retorna un array con los indices de cada alumno (opcional)
 
 mejoresAlumnosPorAsignatura(int[][]):int[][]
-
-
-Crucigrama:
-
-Tenemos un array bidimensional que está compuesto de Strings, pero hay Strings que representan números que hacen referencia a letras del abecedario siendo "0" => "a" y "26"=> "z". Reemplaza dichos números con su valor correspondiente y devuelve el array bidimensional con sus nuevos valores.
-
-Tenemos una cadena y queremos encontrar la cantidad de veces que se repite una secuencia de caracteres. La secuencia de caracteres puede estar dentro de una palabra por ejemplo la secuencia de caracteres "entendido" podría ser parte de "malentendido". Devuelve un entero. No habrán secuencias que se repiten varias veces en una misma palabra,como la secuencia "ana" que se repite dos veces en "banana".
-
-
-Dado un array bidimensional que conforma un crucigrama, ccomprueba si existen las palabras dadas. El crucigrama podría tener números, así que utiliza la función de reemplazar los números con letras. Devuelve un array de booleanos indicando según el orden de palabras si se han encontrado o no.
-
-parserInt() => Convierte una cadena a entero.
-equalsIgnoreCase() => Se utiliza para comparar Strings.
-contains() => comprueba si una cadena contiene una secuencia e caracteres.
-split() => divide una cadena por un caracter especificado y devuelve un array de strings.

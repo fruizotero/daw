@@ -78,19 +78,36 @@ public class Main {
                 { "4 0", "4 1", "4 2", "4 3", "4 4" },
         };
 
-        for (int i = crucigrama.length-1; i >= 0; i--) {
-        // for (int i = 0; i < crucigrama.length; i++) {
-            // int tmp = 0;
-            System.out.print("i:" + i);
-            System.out.println();
-            int tmp_i = i;
-            for (int j = 0; j <= i; j++) {
-                
-                if (j != 0)
-                tmp_i--;
-                System.out.printf("i: %s  j:%s\n", tmp_i, j);
+        // for (int i = crucigrama.length-1; i >= 0; i--) {
+        // // for (int i = 0; i < crucigrama.length; i++) {
+        // // int tmp = 0;
+        // System.out.print("i:" + i);
+        // System.out.println();
+        // int tmp_i = i;
+        // for (int j = 0; j <= i; j++) {
+
+        // if (j != 0)
+        // tmp_i--;
+        // System.out.printf("i: %s j:%s\n", tmp_i, j);
+        // }
+
+        // }
+
+        int numRows = crucigrama.length;
+        int numCols = crucigrama[0].length;
+
+        for (int d = 0; d < numRows + numCols - 1; d++) {
+            // Calcular las coordenadas iniciales de la diagonal
+            int row = (d < numRows) ? d : numRows - 1;
+            int col = (d < numRows) ? 0 : d - numRows + 1;
+
+            // Imprimir elementos de la diagonal
+            while (row >= 0 && col < numCols) {
+                System.out.print(crucigrama[row][col] + " ");
+                row--;
+                col++;
             }
-           
+            System.out.println();
         }
 
     }
