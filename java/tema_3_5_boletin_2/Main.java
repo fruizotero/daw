@@ -93,22 +93,36 @@ public class Main {
 
         // }
 
-        int numRows = crucigrama.length;
-        int numCols = crucigrama[0].length;
+        // int numRows = crucigrama.length;
+        // int numCols = crucigrama[0].length;
 
-        for (int d = 0; d < numRows + numCols - 1; d++) {
-            // Calcular las coordenadas iniciales de la diagonal
-            int row = (d < numRows) ? d : numRows - 1;
-            int col = (d < numRows) ? 0 : d - numRows + 1;
+        // for (int d = 0; d < numRows + numCols - 1; d++) {
+        // // Calcular las coordenadas iniciales de la diagonal
+        // int row = (d < numRows) ? d : numRows - 1;
+        // int col = (d < numRows) ? 0 : d - numRows + 1;
 
-            // Imprimir elementos de la diagonal
-            while (row >= 0 && col < numCols) {
-                System.out.print(crucigrama[row][col] + " ");
-                row--;
-                col++;
-            }
-            System.out.println();
-        }
+        // // Imprimir elementos de la diagonal
+        // while (row >= 0 && col < numCols) {
+        // System.out.print(crucigrama[row][col] + " ");
+        // row--;
+        // col++;
+        // }
+        // System.out.println();
+        // }
+
+        // aa: for (int i = 1; i <= 3; i++) {
+        //     bb: for (int j = 1; j <= 3; j++) {
+        //         if (i == 2 && j == 2) {
+        //             // using break statement with label
+        //             break aa;
+        //         }
+        //         System.out.println(i + " " + j);
+        //     }
+        // }
+
+        Persona p= new Persona("frank");
+
+        p.imprimirDatos();
 
     }
 }
