@@ -7,7 +7,7 @@ public class Main {
 
         triple(new int[]{2, 9, 7, 10, 12}, 3);
         distance(new int[]{100102, 900001});
-        vowelCounter("manzana"); //Después prueba con patata
+        vowelCounter("patata"); //Después prueba con patata
 
         String[] frutas = {"Pera", "Pera", "Manzana", "Naranja", "Pera"};
         String[] frutas2 = {"Pera", "Pera", "Manzana", "Naranja"};
@@ -47,14 +47,14 @@ public class Main {
             }
 
         }
-        numeroRomanoString = numeroRomanoString + numerosRomanosMap.get(anioResto) ;
+        numeroRomanoString = numeroRomanoString + numerosRomanosMap.get(anioResto);
         System.out.println(numeroRomanoString);
 
     }
 
     public static HashMap<Integer, String> numerosRomanos() {
         HashMap<Integer, String> numeros = new HashMap<>();
-        numeros.put(0,"");
+        numeros.put(0, "");
         numeros.put(1, "I");
         numeros.put(2, "II");
         numeros.put(3, "III");
