@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,54 +10,67 @@ public class Main {
         vowelCounter("manzana"); //Después prueba con patata
 
         String[] frutas = {"Pera", "Pera", "Manzana", "Naranja", "Pera"};
-//        String[] frutas2 = {"Pera", "Pera", "Manzana", "Naranja"};
+        String[] frutas2 = {"Pera", "Pera", "Manzana", "Naranja"};
         frutas(frutas, "Pera");
-//        frutas(frutas2);
+        frutas(frutas2, "Manzana");
 
 
-        decimalToRomano(1567);
+        decimalToRomano(951);
+
 
     }
 
 
-    public static void decimalToRomano(int numeroAnio) {
+    public static void decimalToRomano(int anio) {
 
-        int[] numerosRomanosEnteros = new int[]{1000, 500, 100, 50, 10};
+        HashMap<Integer, String> numerosRomanosMap = numerosRomanos();
+        int[] numerosRomanosDivisores = new int[]{1000, 500, 100, 50, 10};
 
-        HashMap<Integer, String> numerosRomanos = new HashMap<>();
-        numerosRomanos.put(1, "I");
-        numerosRomanos.put(2, "II");
-        numerosRomanos.put(3, "III");
-        numerosRomanos.put(4, "IV");
-        numerosRomanos.put(5, "V");
-        numerosRomanos.put(6, "VI");
-        numerosRomanos.put(7, "VII");
-        numerosRomanos.put(8, "VIII");
-        numerosRomanos.put(9, "IX");
-        numerosRomanos.put(10, "X");
-        numerosRomanos.put(50, "L");
-        numerosRomanos.put(100, "C");
-        numerosRomanos.put(500, "D");
-        numerosRomanos.put(1000, "M");
+        int anioResto = anio;
+        String numeroRomanoString = "";
+        for (int numeroRomanoDivisor : numerosRomanosDivisores) {
 
-        int numeroAnioTmp = numeroAnio;
-        String numeroRomano = "";
-        for (int valorNumero : numerosRomanosEnteros) {
-
-            int cantidadNumeroRomanoLetras = numeroAnioTmp / valorNumero;
-
+            int cantidadNumeroRomanoLetras = anioResto / numeroRomanoDivisor;
 
             if (cantidadNumeroRomanoLetras != 0) {
                 for (int i = 0; i < cantidadNumeroRomanoLetras; i++) {
-                    numeroRomano += numerosRomanos.get(valorNumero);
+                    numeroRomanoString += numerosRomanosMap.get(numeroRomanoDivisor);
                 }
-                numeroAnioTmp = numeroAnioTmp % valorNumero;
+                anioResto = anioResto % numeroRomanoDivisor;
+            }
+
+            if (cantidadNumeroRomanoLetras > 3) {
+                numeroRomanoString = numeroRomanoString.replaceFirst("DCCCC", "CM");
+                numeroRomanoString = numeroRomanoString.replaceFirst("CCCC", "CD");
+                numeroRomanoString = numeroRomanoString.replaceFirst("LXXXX", "XC");
+                numeroRomanoString = numeroRomanoString.replaceFirst("XXXX", "XL");
             }
 
         }
+        numeroRomanoString = numeroRomanoString + numerosRomanosMap.get(anioResto) ;
+        System.out.println(numeroRomanoString);
 
-        System.out.println(numeroRomano + numerosRomanos.get(numeroAnioTmp));
+    }
 
+    public static HashMap<Integer, String> numerosRomanos() {
+        HashMap<Integer, String> numeros = new HashMap<>();
+        numeros.put(0,"");
+        numeros.put(1, "I");
+        numeros.put(2, "II");
+        numeros.put(3, "III");
+        numeros.put(4, "IV");
+        numeros.put(5, "V");
+        numeros.put(6, "VI");
+        numeros.put(7, "VII");
+        numeros.put(8, "VIII");
+        numeros.put(9, "IX");
+        numeros.put(10, "X");
+        numeros.put(50, "L");
+        numeros.put(100, "C");
+        numeros.put(500, "D");
+        numeros.put(1000, "M");
+
+        return numeros;
     }
 
 
