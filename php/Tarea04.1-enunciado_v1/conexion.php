@@ -23,12 +23,6 @@ function getConnection()
         $file = 'db_settings.ini';
         if (!$settings = parse_ini_file($file, TRUE)) throw new exception('Unable to open ' . $file . '.');
 
-        // echo "<pre>";
-        // print_r($settings);
-        // echo "</pre>";
-   
-
-
         $dns = $settings['database']['driver'] .
             ':host=' . $settings['database']['host'] .
             ((!empty($settings['database']['port'])) ? (';port=' . $settings['database']['port']) : '') .

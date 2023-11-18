@@ -27,11 +27,6 @@
     $exito = true;
 
 
-
-    //title
-    //isbn
-    //pdate
-    //publisher
     $publishers = findAllPublishers();
     $authors = findAllAuthors();
 
@@ -59,7 +54,7 @@
             $book_author_ids = $_POST["author_ids"];
         }
 
-        transaccion();
+        $exito = transaccion($title, $pdate, $isbn, $pub_Id, $book_author_ids);
     }
 
     ?>
@@ -115,7 +110,7 @@
                         <option value="">----</option>
                         <?php
 
-                        $authors = findAllAuthors();
+                        // $authors = findAllAuthors();
                         foreach ($authors as  $author) {
                             $name = $author["name"];
                             $author_id = $author["author_id"];
@@ -181,49 +176,67 @@
             return $array;
         }
 
-        function transaccion(): bool
+
+        /**
+         * Devuelve un booleano indicando si tuvo éxito o no la transacción.
+         * @param mixed $title Cadena con el título del libro.
+         * @param mixed $pdate Objeto del tipo DateTimeImmutable para obtener la fecha
+         * @param mixed $isbn Cadena con el isbn del libro
+         * @param mixed $pub_Id Cadena que contiened el id de la editorial
+         * @param mixed $book_author_ids Array con los ids de los autores.
+         * @return bool 
+         */
+        function transaccion($title, $pdate, $isbn, $pub_Id, $book_author_ids): bool
         {
             $exito = false;
-
-
-            $title = $_POST["title"];
-            $pdate = $_POST["pdate"];
-            $isbn = $_POST["isbn"];
-            $publisher = $_POST["publisher"];
-            $book_author_ids = $_POST["author_ids"];
-
             try {
                 $conProyecto = getConnection();
                 $conProyecto->beginTransaction();
 
-                $addLibro = "INSERT INTO books (title, isbn, published_date, publisher_id) values(:title, :isbn, :pdate, :id)";
+                $query_libro = "INSERT INTO books (title, isbn, published_date, publisher_id) VALUES(:title, :isbn, :pdate, :pub_id)";
 
-                $addAutor = "INSERT INTO book_authors(book_id,author_id) values(:author_id, :book_id)";
+                $stmt_libro = $conProyecto->prepare($query_libro);
 
-                $stmt_libro = $conProyecto->prepare($addLibro);
-                $stmt_autor = $conProyecto->prepare($addAutor);
+                $exito = $stmt_libro->execute(
+                    array(
+                        "isbn" => $isbn,
+                        "title" => $title,
+                        "pdate" => $pdate == null ? "" : $pdate->format('Y-m-d'),
+                        "pub_id" => $pub_Id
+                    )
+                );
 
-                $exito = $stmt_libro->execute(array("isbn" => $isbn, "title" => $title, "pdate" => $pdate, "id" => $publisher));
 
-                $id_libro=$conProyecto->lastInsertId();
+                $cantidad_authors = $book_author_ids == null ? 0 : sizeof($book_author_ids);
+                // El caso donde no existan autores o anónimos. Aunque si se escoge la primerá opción "----" lo tendrá en cuenta y fallará la consulta
+                if ($cantidad_authors > 0) {
 
-                foreach ($book_author_ids as  $value) {
-                    if ($exito) {
-                        $exito = $stmt_autor->execute(array("book_id"=>$id_libro, "author_id"=>$value));
+                    $id_libro = $conProyecto->lastInsertId();
+                    $query_autors = "INSERT INTO book_authors(book_id,author_id) VALUES ";
+                    $data_book_authors = [];
+
+                    for ($i = 0; $i < $cantidad_authors; $i++) {
+                        $query_autors .= "(:book_id$i, :author_id$i)";
+                        $query_autors .= $i == $cantidad_authors - 1 ? "" : ",";
+                        $data_book_authors["book_id$i"] = $id_libro;
+                        $data_book_authors["author_id$i"] = $book_author_ids[$i];
                     }
+                    $stmt_autor = $conProyecto->prepare($query_autors);
+                    // $stmt_autor->debugDumpParams();
+                    $exito = $exito && $stmt_autor->execute($data_book_authors);
+                    // $stmt_autor->debugDumpParams();
                 }
 
-
-                if($exito){
+                if ($exito) {
                     $conProyecto->commit();
-                } else{
+                } else {
                     $conProyecto->rollBack();
                 }
-
-                //code...
             } catch (PDOException $ex) {
                 $conProyecto->rollBack();
                 $exito = false;
+                // echo $ex->getMessage();
+                echo "<p style=\"color:white;background-color:red; text-align:center;\">Ocurrió un error al crear el libro</p>";
             }
 
             return $exito;
