@@ -29,6 +29,7 @@ public class Main {
     public static void play(String[] ips) throws URISyntaxException, IOException, InterruptedException {
         int numApis = 0;
         int puntuacion = 0;
+
         Scanner sc = new Scanner(System.in);
 
         for (String ip : ips) {
@@ -37,18 +38,21 @@ public class Main {
 
                 if (consumeAPI(ip, "").equalsIgnoreCase("true")) {
 
+                    numApis++;
                     for (int i = 1; i < 4; i++) {
+                        String pista = consumeAPI(ip, "pista" + i) + " : (Responder s/n)";
+                        System.out.println(pista);
+                        if (sc.nextLine().equalsIgnoreCase("s")) {
+                            System.out.print("Respuesta: ");
+                            String respuesta = sc.nextLine();
+                            boolean respuestaCorrecta = consumeAPI(ip, "resolver/" + respuesta).equalsIgnoreCase("true");
+                            System.out.println(respuestaCorrecta);
+                            if (respuestaCorrecta) {
+                                puntuacion += (10 / i);
+                            }
+                            break;
+                        }
 
-                        System.out.println(consumeAPI(ip, "pista"+i));
-                        //Este bucle es para recorrer las 3 pistas
-                        //Truco: "pista" + i para acceder a los endPoints correspondientes
-                        //Recuerda que si se quiere resolver en la primera pista, no debería
-                        //de mostrarse las siguientes.
-
-                        //Se tendra que diseñar la lógica para resolver en la pista en la que
-                        //sepas con certeza el personaje.
-                        //Además, si resuelves en la primera pista son 10 puntos, en la segunda
-                        //5 puntos y en la tercera 3.
                     }
 
                 }
@@ -57,11 +61,17 @@ public class Main {
                 System.out.println("Error" + e);
             }
 
-            System.out.println("Mi puntuación actual es de :" + puntuacion + " puntos");
+            System.out.println("Mi puntuación actual es de : " + puntuacion + " puntos");
             System.out.println(numApis + " de " + ips.length + " preguntas");
         }
 
         System.out.println("PUNTUACIÓN FINAL: " + puntuacion + " puntos en un total de " + numApis + " preguntas");
+
+        int puntuacionAnterior = Integer.parseInt(consumeAPI("localhost", "score"));
+
+        if (puntuacion > puntuacionAnterior) {
+            consumeAPI("localhost", "score/ff456889211/" + puntuacion);
+        }
 
         //Comprueba que tu nueva puntuación sea superior a la que tienes en tu API.
         //Si es superior envíala para que quede registrado tu nuevo record.

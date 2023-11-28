@@ -15,7 +15,7 @@ public class Main {
         frutas(frutas2, "Manzana");
 
 
-        decimalToRomano(951);
+        decimalToRomano(86);
 
 
     }
@@ -33,10 +33,10 @@ public class Main {
             int cantidadNumeroRomanoLetras = anioResto / numeroRomanoDivisor;
 
             if (cantidadNumeroRomanoLetras != 0) {
-                for (int i = 0; i < cantidadNumeroRomanoLetras; i++) {
-                    numeroRomanoString += numerosRomanosMap.get(numeroRomanoDivisor);
-                }
+                String caracterNumeroRomano = numerosRomanosMap.get(numeroRomanoDivisor);
+                numeroRomanoString += caracterNumeroRomano.repeat(cantidadNumeroRomanoLetras);
                 anioResto = anioResto % numeroRomanoDivisor;
+
             }
 
             if (cantidadNumeroRomanoLetras > 3) {
